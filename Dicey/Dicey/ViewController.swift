@@ -26,7 +26,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        
+        rollDice()
+    }
+    
+    func rollDice() {
         randomDiceIndex1 = Int(arc4random_uniform(6)) + 1
         randomDiceIndex2 = Int(arc4random_uniform(6)) + 1
         
@@ -35,7 +38,10 @@ class ViewController: UIViewController {
         
         diceImageView1.image = UIImage(named: "dice\(randomDiceIndex1)")
         diceImageView2.image = UIImage(named: "dice\(randomDiceIndex2)")
-        
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        rollDice()
     }
 }
 
