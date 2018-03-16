@@ -58,7 +58,6 @@
                     <connections>
                         <outlet property="diceImageView1" destination="Mx4-Mk-OvK" id="vPq-es-l3O"/>
                         <outlet property="diceImageView2" destination="Szw-wm-im8" id="Nrq-VI-o9Y"/>
-                        <outlet property="rollUIButton" destination="G0p-5f-Fi5" id="Okk-lh-Ejc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
