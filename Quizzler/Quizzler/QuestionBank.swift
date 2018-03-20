@@ -11,10 +11,50 @@ import SwiftyJSON
 
 class QuestionBank {
     
+    var currentIndex = 0
     var questions = [Question]()
     
     init() {
         loadQuestions()
+    }
+    
+    func getNext() -> Question? {
+        if 0 <= currentIndex && currentIndex < questions.count {
+            let nextQuestion = questions[currentIndex]
+            currentIndex += 1
+            return nextQuestion
+        } else {
+            return nil
+        }
+    }
+    
+    func getCurrent() -> Question? {
+        if 0 <= currentIndex && currentIndex < questions.count {
+            return questions[currentIndex]
+        } else {
+            return nil
+        }
+    }
+    
+    func getPrevious() -> Question? {
+        let previousIndex = currentIndex - 1
+        if 0 > previousIndex {
+            return nil
+        }
+        currentIndex -= 1
+        return questions[previousIndex]
+    }
+    
+    func resetIndex() {
+        currentIndex = 0
+    }
+    
+    func goToNext() {
+        currentIndex += 1
+    }
+    
+    func goToPrevious() {
+        currentIndex -= 1
     }
     
     func loadQuestions() {
