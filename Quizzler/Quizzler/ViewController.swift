@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var questionBank = QuestionBank()
+    var incorrectAnswers = 0
+    var lastIncorrectQuestionIndex = -1
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -19,24 +21,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let question = questionBank.getCurrent() {
-            questionLabel.text = question.questionText
-            scoreLabel.text = "0"
-        }
+        updateUI()
     }
 
 
     @IBAction func answerPressed(_ sender: AnyObject) {
         if let answer = sender.tag {
+            print("Tag value: \(answer)")
             checkAnswer(answer: answer != 0)
         }
     }
     
     
     func updateUI() {
+        print(questionBank.currentIndex)
         if let question = questionBank.getCurrent() {
             questionLabel.text = question.questionText
-            scoreLabel.text = "\(questionBank.currentIndex + 1)"
+            scoreLabel.text = "\(questionBank.currentIndex - incorrectAnswers)"
+            progressLabel.text = "\(questionBank.currentIndex + 1) / \(questionBank.questions.count)"
+            progressBar.frame.size.width = (view.frame.size.width/CGFloat(questionBank.questions.count)) * (CGFloat(questionBank.currentIndex + 1))
+        } else {
+            handleQuizEnd()
         }
     }
     
@@ -47,22 +52,43 @@ class ViewController: UIViewController {
     
     
     func checkAnswer(answer: Bool) {
+        print(answer)
         if let question = questionBank.getCurrent() {
             if question.answer == answer {
+                print("Correct answer...")
+                ProgressHUD.showSuccess("Correct!")
                 questionBank.goToNext()
                 updateUI()
             } else {
+                print("Wrong answer...")
+                ProgressHUD.showError("Wrong!")
+                if lastIncorrectQuestionIndex != questionBank.currentIndex {
+                    lastIncorrectQuestionIndex = questionBank.currentIndex
+                    incorrectAnswers += 1
+                }
                 //let alert = UIAlertController(title: "Oops", message: "Your answer is incorrect...", preferredStyle: .alert)
-                //alert.show(this, sender: <#T##Any?#>)
+                //alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                //self.present(alert, animated: true, completion: nil)
             }
+        } else {
+            handleQuizEnd()
         }
     }
     
-    
-    func startOver() {
-       questionBank.resetIndex()
+    func handleQuizEnd() {
+        if questionBank.end() {
+            print("No more questions...")
+            let alert = UIAlertController(title: "Finished", message: "You have completed the quiz. Your score is \(questionBank.currentIndex - incorrectAnswers).", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            startOver()
+        }
     }
     
-
-    
+    func startOver() {
+        questionBank.resetIndex()
+        incorrectAnswers = 0
+        lastIncorrectQuestionIndex = -1
+        updateUI()
+    }
 }

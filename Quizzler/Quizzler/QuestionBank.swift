@@ -57,6 +57,10 @@ class QuestionBank {
         currentIndex -= 1
     }
     
+    func end() -> Bool {
+        return currentIndex == questions.count
+    }
+    
     func loadQuestions() {
         if let path = Bundle.main.path(forResource: "questions", ofType: "json") {
             do {

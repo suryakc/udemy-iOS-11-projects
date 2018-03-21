@@ -17,6 +17,8 @@
 		DCAC2E0C2060CDE50077793A /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = DCAC2E0B2060CDE50077793A /* questions.json */; };
 		DCAC2E0F20618E5C0077793A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC2E0E20618E5C0077793A /* SwiftyJSON.framework */; };
 		DCAC2E1120618EA10077793A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DCAC2E0E20618E5C0077793A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DCF0767720621E0E00CCFF65 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCF0767520621E0E00CCFF65 /* ProgressHUD.bundle */; };
+		DCF0767820621E0E00CCFF65 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF0767620621E0E00CCFF65 /* ProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,10 @@
 		DCAC2E082060CA1C0077793A /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
 		DCAC2E0B2060CDE50077793A /* questions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = questions.json; sourceTree = "<group>"; };
 		DCAC2E0E20618E5C0077793A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		DCF0767320621E0D00CCFF65 /* Quizzler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quizzler-Bridging-Header.h"; sourceTree = "<group>"; };
+		DCF0767420621E0E00CCFF65 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		DCF0767520621E0E00CCFF65 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		DCF0767620621E0E00CCFF65 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +96,12 @@
 		633646BC1B8C657400FF45E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DCF0767520621E0E00CCFF65 /* ProgressHUD.bundle */,
+				DCF0767420621E0E00CCFF65 /* ProgressHUD.h */,
+				DCF0767620621E0E00CCFF65 /* ProgressHUD.m */,
 				633646C71B8C657400FF45E2 /* LaunchScreen.xib */,
 				633646BD1B8C657400FF45E2 /* Info.plist */,
+				DCF0767320621E0D00CCFF65 /* Quizzler-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,7 +182,7 @@
 				TargetAttributes = {
 					633646B81B8C657400FF45E2 = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -203,6 +213,7 @@
 				ADEB04ED1FBDFEAA00026359 /* Main.storyboard in Resources */,
 				DCAC2E0C2060CDE50077793A /* questions.json in Resources */,
 				633646C91B8C657400FF45E2 /* LaunchScreen.xib in Resources */,
+				DCF0767720621E0E00CCFF65 /* ProgressHUD.bundle in Resources */,
 				633646C61B8C657400FF45E2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +227,7 @@
 			files = (
 				DCAC2E072060C7030077793A /* Question.swift in Sources */,
 				DCAC2E092060CA1C0077793A /* QuestionBank.swift in Sources */,
+				DCF0767820621E0E00CCFF65 /* ProgressHUD.m in Sources */,
 				633646C11B8C657400FF45E2 /* ViewController.swift in Sources */,
 				633646BF1B8C657400FF45E2 /* AppDelegate.swift in Sources */,
 			);
@@ -359,7 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apolloappstudio.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quizzler/Quizzler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -383,7 +395,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apolloappstudio.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quizzler/Quizzler-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
