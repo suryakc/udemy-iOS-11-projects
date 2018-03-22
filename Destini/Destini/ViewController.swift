@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var currentScene: Scene?
+    var firstScene: Scene?
 
     // Our strings
     let story1 = "Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: \"Need a ride, boy?\"."
@@ -40,17 +41,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentScene = Scene.deserialize(fromJSONFile: "story")
+        self.firstScene = self.currentScene
         updateUI()
     }
 
     
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
-        if let scene = self.currentScene {
-            let choice = sender.tag - 1
-            self.currentScene = scene.choices[choice]
-            print(self.currentScene)
+        if Constants.StartOverText == sender.titleLabel?.text {
+            self.currentScene = self.firstScene
             updateUI()
+        } else {
+            if let scene = self.currentScene {
+                let choice = sender.tag - 1
+                self.currentScene = scene.choices[choice]
+                //print(self.currentScene)
+                updateUI()
+            }
         }
     }
     
@@ -58,11 +65,14 @@ class ViewController: UIViewController {
         if let scene = self.currentScene {
             storyTextView.text = scene.description
             if (2 == scene.choices.count) {
+                topButton.isHidden = false
+                bottomButton.isHidden = false
                 topButton.setTitle(scene.choices[0].optionText, for: .normal)
                 bottomButton.setTitle(scene.choices[1].optionText, for: .normal)
             } else {
                 topButton.isHidden = true
-                bottomButton.isHidden = true
+                //bottomButton.isHidden = true
+                bottomButton.setTitle(Constants.StartOverText, for: .normal)
             }
             
         }

@@ -20,7 +20,7 @@
         },
         {
             "sceneId" : 4,
-            "description" : "You bond with the murderer while crooning verses of 'Can you feel the love tonight'. He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: 'Try the pier.'",
+            "description" : "You bond with the murderer while crooning verses of 'Can you feel the love tonight'. He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: 'Try the pier.'.",
             "optionText" : "I love Elton John! Hand him the cassette tape.",
             "choices": []
         },
@@ -40,7 +40,7 @@
             "sceneId" : 7,
             "description" : "What? Such a cop out! Did you know accidental traffic accidents are the second leading cause of accidental death for most adult age groups?",
             "optionText" : "Wait, I know how to change a tire.",
-            "choices": [4, 5]
+            "choices": []
         }
     ]
 }
